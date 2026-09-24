@@ -1,0 +1,29 @@
+CLINICAL TRIAL PROTOCOL SPECIFICATION - PROTOCOL ID: ONCO-2026-X
+Study Title: Phase 2 Evaluation of Compound XT-9 in Advanced Solid Tumors
+Sponsor: Global BioTherapeutics Inc.
+Regulatory Reference: ICH-GCP E6(R2), FDA 21 CFR Part 312
+
+================================================================================
+SECTION 4: PATIENT ELIGIBILITY AND EXCLUSION CRITERIA
+================================================================================
+- Criterion E-01 (Hematologic Limits): Absolute Neutrophil Count (ANC) must be >= 1.5 x 10^9/L and platelet count >= 100 x 10^9/L prior to any cycle initiation.
+- Criterion E-02 (Renal Function): Serum creatinine must be <= 1.5 times the Upper Limit of Normal (ULN), or measured creatinine clearance >= 50 mL/min.
+- Criterion E-03 (Cardiac Safety): Baseline QTc interval on 12-lead ECG must not exceed 470 ms for females and 450 ms for males using Fridericia's formula (QTcF).
+- Criterion E-04 (Hepatic Exclusion Threshold): Subjects with serum Alanine Aminotransferase (ALT) or Aspartate Aminotransferase (AST) > 2.5 times the Upper Limit of Normal (ULN) are strictly excluded from study enrollment and dosing due to fatal drug-induced liver injury (DILI) risks.
+- Criterion E-05 (Concurrent Illness): Active infection requiring systemic intravenous antibiotic therapy within 7 days prior to Day 1 is an exclusionary event.
+
+================================================================================
+SECTION 6: VISIT SCHEDULES AND WINDOW TOLERANCES
+================================================================================
+- Section 6.1 (Screening Window): All screening evaluations, laboratory verifications, and consent forms must be completed within 28 calendar days prior to Cycle 1 Day 1 dosing.
+- Section 6.2 (Cycle Assessment Windows): Routine Cycle Follow-Up visits must occur within a scheduled window of Day 21 (± 1 calendar day). Minor variances of up to 2 calendar days due to external logistics require a formal Note-to-File (NTF) and appointment realignment.
+- Section 6.3 (Delayed Dosing Thresholds): If study medication administration is delayed by more than 7 calendar days due to unresolved toxicities, a dose reduction of 25% is mandatory upon subsequent recovery and medical monitor approval.
+- Section 6.4 (Visit Sequence Order): Safety laboratory samples must be drawn and verified prior to dispensing or administering any investigational medicinal product (IMP).
+
+================================================================================
+SECTION 8: EFFICACY AND SAFETY ENDPOINTS
+================================================================================
+- Section 8.1 (Vital Signs & Monitoring): Full vital signs (blood pressure, pulse, temperature, SpO2) must be recorded within 60 minutes prior to any investigational drug administration and 30 minutes post-infusion.
+- Section 8.2 (Concomitant Medications): Strong CYP3A4 inhibitors (e.g., Ketoconazole, Itraconazole) and strong CYP3A4 inducers (e.g., Rifampin, St. John's Wort) are strictly prohibited during the active treatment phase due to severe pharmacokinetic interactions.
+- Section 8.3 (Adverse Event Timelines): Any Serious Adverse Event (SAE) must be reported to the Sponsor and Institutional Review Board (IRB) within 24 hours of site awareness.
+- Section 8.4 (Primary Endpoint Biomarkers & ECG): Fasting blood draws for plasma biomarker assays and baseline 12-lead safety ECGs must be executed prior to investigational product administration at Week 12. Omission of pre-dose assessments compromises primary efficacy endpoints and constitutes a major protocol deviation.
