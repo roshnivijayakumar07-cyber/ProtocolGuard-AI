@@ -53,13 +53,13 @@ pip install -r requirements.txt
 ```
 
 ### 4. Configure API Key
-Create a `.env` file or enter your API key directly in the Streamlit sidebar:
+Create a `.env` file from the example template:
 ```bash
 cp .env.example .env
 ```
-Add your Google Gemini API key in `.env`:
+Add your Google Gemini API key in `.env` (or configure `GEMINI_API_KEY` in `.streamlit/secrets.toml`):
 ```env
-GEMINI_API_KEY=your_gemini_api_key_here
+GOOGLE_API_KEY=your_gemini_api_key_here
 ```
 
 ### 5. Run the Application

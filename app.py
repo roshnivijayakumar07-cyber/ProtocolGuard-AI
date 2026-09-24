@@ -6,6 +6,7 @@ except ImportError:
     pass
 
 import os
+from dotenv import load_dotenv
 import streamlit as st
 from typing import List
 from pydantic import BaseModel, Field
@@ -17,6 +18,26 @@ from langchain_community.vectorstores import Chroma
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
+
+# ------------------------------------------------------------------------------
+# Environment & API Key Configuration (Precedence: Secrets -> .env)
+# ------------------------------------------------------------------------------
+load_dotenv()
+
+api_key = None
+try:
+    if "GEMINI_API_KEY" in st.secrets:
+        api_key = st.secrets["GEMINI_API_KEY"]
+    elif "GOOGLE_API_KEY" in st.secrets:
+        api_key = st.secrets["GOOGLE_API_KEY"]
+except Exception:
+    pass
+
+if not api_key:
+    api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+
+if api_key:
+    os.environ["GOOGLE_API_KEY"] = api_key
 
 st.set_page_config(
     page_title="ProtocolGuard-AI | Clinical QA Copilot",
@@ -32,6 +53,12 @@ st.caption(
 
 st.title("🛡️ ProtocolGuard-AI")
 st.subheader("GCP Clinical Protocol Deviation & Regulatory CAPA Engine")
+
+if not api_key:
+    st.error(
+        "⚠️ **API Key Not Configured:** No valid Google Gemini API key found. "
+        "Please set `GOOGLE_API_KEY` in your `.env` file or configure `GEMINI_API_KEY` in Streamlit Secrets."
+    )
 
 class CAPAResponse(BaseModel):
     severity: str = Field(description="Must be strictly: Minor, Major, or Critical")
@@ -68,25 +95,6 @@ def initialize_knowledge_base():
 with st.spinner("Initializing Clinical Protocol Vector Store..."):
     vector_db = initialize_knowledge_base()
 
-default_api_key = ""
-try:
-    if "GEMINI_API_KEY" in st.secrets:
-        default_api_key = st.secrets["GEMINI_API_KEY"]
-except Exception:
-    pass
-
-if not default_api_key:
-    default_api_key = os.environ.get("GEMINI_API_KEY", "")
-
-st.sidebar.header("⚙️ Configuration")
-api_key = st.sidebar.text_input(
-    "Google Gemini API Key",
-    value=default_api_key,
-    type="password",
-    help="Enter your Google AI Studio API key (or configure GEMINI_API_KEY in Streamlit Secrets)"
-)
-
-st.sidebar.markdown("---")
 st.sidebar.header("🧪 Test Presets")
 
 preset_choice = st.sidebar.radio(
@@ -128,7 +136,9 @@ audit_button = st.button("🚀 Run GCP Compliance Audit", type="primary")
 
 if audit_button:
     if not api_key:
-        st.error("Please enter your Gemini API Key in the sidebar.")
+        st.error(
+            "API Key is missing. Please set `GOOGLE_API_KEY` in your `.env` file or configure `GEMINI_API_KEY` in Streamlit Secrets."
+        )
     elif vector_db is None:
         st.error("Database initialization failed. Please make sure `data/sample_protocol.txt` exists.")
     elif not incident_input.strip():

@@ -1,6 +1,9 @@
 # Frontend Dashboard
 streamlit>=1.35.0
 
+# Environment & Secrets Management
+python-dotenv>=1.0.0
+
 # LLM Orchestration & Google Gemini Integration
 langchain>=0.2.0
 langchain-core>=0.2.0
