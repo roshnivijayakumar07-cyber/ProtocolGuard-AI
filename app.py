@@ -1,3 +1,10 @@
+try:
+    __import__('pysqlite3')
+    import sys
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass
+
 import os
 import streamlit as st
 from typing import List
@@ -61,11 +68,22 @@ def initialize_knowledge_base():
 with st.spinner("Initializing Clinical Protocol Vector Store..."):
     vector_db = initialize_knowledge_base()
 
+default_api_key = ""
+try:
+    if "GEMINI_API_KEY" in st.secrets:
+        default_api_key = st.secrets["GEMINI_API_KEY"]
+except Exception:
+    pass
+
+if not default_api_key:
+    default_api_key = os.environ.get("GEMINI_API_KEY", "")
+
 st.sidebar.header("⚙️ Configuration")
 api_key = st.sidebar.text_input(
     "Google Gemini API Key",
+    value=default_api_key,
     type="password",
-    help="Enter your Google AI Studio API key"
+    help="Enter your Google AI Studio API key (or configure GEMINI_API_KEY in Streamlit Secrets)"
 )
 
 st.sidebar.markdown("---")
